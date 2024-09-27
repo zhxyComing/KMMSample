@@ -2,6 +2,7 @@ package com.dixon.app.kmmsample.ui
 
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.runtime.Composable
+import com.dixon.app.kmmsample.ui.home.HomeContainer
 import com.dixon.app.kmmsample.ui.home.HomeMain
 import com.dixon.app.kmmsample.ui.image.ImageDetail
 import moe.tlaster.precompose.navigation.BackStackEntry
@@ -16,8 +17,12 @@ data class Page(
 
 const val PAGE_HOME_MAIN_ROUTE = "/home_main"
 const val PAGE_IMAGE_DETAIL_ROUTE = "/home_demo"
+const val PAGE_HOME_CONTAINER_ROUTE = "/home_container"
 
 val pages = listOf(
+    Page(PAGE_HOME_CONTAINER_ROUTE) {
+        HomeContainer()
+    },
     Page(PAGE_HOME_MAIN_ROUTE) {
         HomeMain()
     },

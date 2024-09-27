@@ -33,7 +33,7 @@ fun App() {
                 // Navigation transition for the scenes in this NavHost, this is optional
                 navTransition = NavTransition(),
                 // The start destination
-                initialRoute = PAGE_HOME_MAIN_ROUTE,
+                initialRoute = PAGE_HOME_CONTAINER_ROUTE,
             ) {
                 pages.forEach {
                     scene(
