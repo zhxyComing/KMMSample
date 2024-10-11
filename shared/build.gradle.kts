@@ -9,6 +9,19 @@ plugins {
     alias(libs.plugins.kotlinSerializationPlugin)
     // 本地资源2
     id("dev.icerock.mobile.multiplatform-resources")
+    // 数据库配置1
+    // ⚠️最后，iOS还需添加SQLite依赖库，俩种方式：
+    // 1. 使用 CocoaPods 来管理依赖项
+    // pod 'SQLite.swift', '~> 0.12.2'
+    // 然后运行 pod install 来安装依赖
+    // 2. 手动链接 SQLite:
+    // 如果没有使用 CocoaPods，或者需要手动链接，确保在 Xcode 项目的构建设置中添加 SQLite 库：
+    // <1. 打开 Xcode，选择你的项目。
+    // <2. 转到“Build Phases”选项卡。
+    // <3. 展开“Link Binary With Libraries”。
+    // <4. 点击“+”按钮，添加 libsqlite3.tbd。
+    // 这里我选了第二种
+    id("app.cash.sqldelight") version "2.0.2"
 }
 
 kotlin {
@@ -34,7 +47,7 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -68,6 +81,10 @@ kotlin {
                 // 本地资源3
                 api("dev.icerock.moko:resources:0.24.1")
                 api("dev.icerock.moko:resources-compose:0.24.1")
+                // 日期&时间
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
+                // KeyValueStore
+                implementation("com.liftric:kvault:1.12.0")
             }
         }
         commonTest.dependencies {
@@ -77,6 +94,8 @@ kotlin {
             dependencies {
                 // 平台网络库引擎
                 implementation(libs.ktor.client.okhttp)
+                // 数据库配置1
+                implementation("app.cash.sqldelight:android-driver:2.0.2")
             }
         }
 
@@ -92,6 +111,8 @@ kotlin {
             dependencies {
                 // 平台网络库引擎
                 implementation(libs.ktor.client.ios)
+                // 数据库配置1
+                implementation("app.cash.sqldelight:native-driver:2.0.2")
             }
         }
     }
@@ -115,4 +136,13 @@ multiplatformResources {
 //    resourcesVisibility.set(MRVisibility.Internal) // optional, default Public
     iosBaseLocalizationRegion.set("en") // optional, default "en"
     iosMinimalDeploymentTarget.set("16.0") // optional, default "9.0"
+}
+
+// 数据库配置1
+sqldelight {
+    databases {
+        create("KmmSampleDatabase") {
+            packageName.set("com.dixon.app.kmmsample")
+        }
+    }
 }

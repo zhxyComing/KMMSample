@@ -1,0 +1,23 @@
+-- 数据库配置2
+
+CREATE TABLE PayRecord (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,  -- record ID
+    timestamp INTEGER NOT NULL, -- 时间戳
+    amount INTEGER NOT NULL,
+    income INTEGER NOT NULL,
+    desc TEXT NOT NULL
+);
+
+insertPayRecord:
+INSERT INTO PayRecord(timestamp, amount, income, desc) VALUES(?,?,?,?);
+
+queryAll:
+SELECT * FROM PayRecord ORDER BY timestamp DESC;
+
+deleteById:
+DELETE FROM PayRecord WHERE id = ?;
+
+updateById:
+UPDATE PayRecord
+SET amount = ?, desc = ?, income = ?, timestamp = ?
+WHERE id = ?;

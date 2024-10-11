@@ -1,6 +1,11 @@
 package com.dixon.app.kmmsample.ui.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -10,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dixon.app.kmmsample.MR
+import com.dixon.app.kmmsample.ui.EmptyPage
 import com.dixon.app.kmmsample.ui.common.TabContainer
 import com.dixon.app.kmmsample.ui.common.TabInfo
 import com.dixon.app.kmmsample.ui.record.RecordPage
@@ -24,24 +30,24 @@ data class HomeTabInfo(
 
 private val HOME_TABS = listOf(
     HomeTabInfo(
-        title = "Record",
+        title = "Pay",
         icon = MR.images.home,
         tabContent = { RecordPage() }
     ),
     HomeTabInfo(
-        title = "Record",
+        title = "Empty",
         icon = MR.images.home,
-        tabContent = { RecordPage() }
+        tabContent = { EmptyPage() }
     ),
     HomeTabInfo(
-        title = "Record",
+        title = "Empty",
         icon = MR.images.home,
-        tabContent = { RecordPage() }
+        tabContent = { EmptyPage() }
     ),
     HomeTabInfo(
-        title = "Record",
+        title = "Empty",
         icon = MR.images.home,
-        tabContent = { RecordPage() }
+        tabContent = { EmptyPage() }
     )
 )
 
@@ -53,7 +59,7 @@ fun HomeContainer() {
             Text(
                 text = title,
                 fontSize = 14.sp,
-                color = Color.Black
+                color = Color.Black,
             )
         },
         icon = {
